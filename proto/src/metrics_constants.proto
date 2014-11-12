@@ -4625,5 +4625,9 @@ message MetricsEvent {
     OMNI_QS_WEATHER_DETAILS = 9002;
 
     CUSTOM_QUICK_TILES = 9003;
+
+    // BEGIN PA CONSTANTS
+    // Settings -> Backup & Reset -> Feature Preferences
+    FEATURE_PREFERENCES = 1146;
   }
 }
