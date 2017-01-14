@@ -17,6 +17,7 @@
 package com.android.systemui.statusbar.phone;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.util.EventLog;
 import android.view.MotionEvent;
@@ -38,6 +39,13 @@ public class PhoneStatusBarView extends PanelBar {
     private static final String TAG = "PhoneStatusBarView";
     private static final boolean DEBUG = StatusBar.DEBUG;
     private static final boolean DEBUG_GESTURES = false;
+
+    private int mBasePaddingBottom;
+    private int mBasePaddingLeft;
+    private int mBasePaddingRight;
+    private int mBasePaddingTop;
+
+    private ViewGroup mStatusBarContents;
 
     StatusBar mBar;
 
@@ -74,12 +82,31 @@ public class PhoneStatusBarView extends PanelBar {
         mScrimController = scrimController;
     }
 
+    public void swiftStatusBarItems(int horizontalShift, int verticalShift) {
+        if (mStatusBarContents == null) {
+            return;
+        }
+
+        mStatusBarContents.setPaddingRelative(mBasePaddingLeft + horizontalShift,
+                                              mBasePaddingTop + verticalShift,
+                                              mBasePaddingRight + horizontalShift,
+                                              mBasePaddingBottom - verticalShift);
+        invalidate();
+    }
+
     @Override
     public void onFinishInflate() {
         mBarTransitions.init();
         LinearLayout batteryContainer = (LinearLayout) findViewById(R.id.battery_container);
         mBatteryViewManager = new BatteryViewManager(mContext, batteryContainer,
                 BatteryViewManager.BATTERY_LOCATION_STATUSBAR);
+
+        mStatusBarContents = (ViewGroup) findViewById(R.id.status_bar_contents);
+
+        mBasePaddingLeft = mStatusBarContents.getPaddingStart();
+        mBasePaddingTop = mStatusBarContents.getPaddingTop();
+        mBasePaddingRight = mStatusBarContents.getPaddingEnd();
+        mBasePaddingBottom = mStatusBarContents.getPaddingBottom();
     }
 
     @Override

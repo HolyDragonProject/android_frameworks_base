@@ -122,6 +122,13 @@ public class NavigationBarView extends FrameLayout implements PluginListener<Nav
     private RecentsComponent mRecentsComponent;
     private Divider mDivider;
 
+    private int mBasePaddingBottom;
+    private int mBasePaddingLeft;
+    private int mBasePaddingRight;
+    private int mBasePaddingTop;
+
+    private ViewGroup mNavigationBarContents;
+
     private class NavTransitionListener implements TransitionListener {
         private boolean mBackTransitioning;
         private boolean mHomeAppearing;
@@ -566,6 +573,18 @@ public class NavigationBarView extends FrameLayout implements PluginListener<Nav
         getAccessibilityButton().setLongClickable(longClickable);
     }
 
+    public void swiftNavigationBarItems(int horizontalShift, int verticalShift) {
+        if (mNavigationBarContents == null) {
+            return;
+        }
+
+        mNavigationBarContents.setPaddingRelative(mBasePaddingLeft + horizontalShift,
+                                              mBasePaddingTop + verticalShift,
+                                              mBasePaddingRight + horizontalShift,
+                                              mBasePaddingBottom - verticalShift);
+        invalidate();
+    }
+
     @Override
     public void onFinishInflate() {
         mNavigationInflaterView = (NavigationBarInflaterView) findViewById(
@@ -573,6 +592,13 @@ public class NavigationBarView extends FrameLayout implements PluginListener<Nav
         mNavigationInflaterView.setButtonDispatchers(mButtonDispatchers);
 
         getImeSwitchButton().setOnClickListener(mImeSwitcherClickListener);
+
+        mNavigationBarContents = (ViewGroup) findViewById(R.id.nav_buttons);
+
+        mBasePaddingLeft = mNavigationBarContents.getPaddingStart();
+        mBasePaddingTop = mNavigationBarContents.getPaddingTop();
+        mBasePaddingRight = mNavigationBarContents.getPaddingEnd();
+        mBasePaddingBottom = mNavigationBarContents.getPaddingBottom();
 
         DockedStackExistsListener.register(mDockedListener);
         updateRotatedViews();
