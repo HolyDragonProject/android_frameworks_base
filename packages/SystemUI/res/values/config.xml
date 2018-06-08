@@ -403,11 +403,11 @@
     <bool name="config_hideDividersDuringExpand">false</bool>
 
     <!-- Whether or not child notifications that are part of a group will have shadows. -->
-    <bool name="config_enableShadowOnChildNotifications">true</bool>
+    <bool name="config_enableShadowOnChildNotifications">false</bool>
 
     <!-- Whether or not a view containing child notifications will have a custom background when
          it has been expanded to reveal its children. -->
-    <bool name="config_showGroupNotificationBgWhenExpanded">false</bool>
+    <bool name="config_showGroupNotificationBgWhenExpanded">true</bool>
 
     <!-- Whether to artificially interpret all signal strengths as
          one bar higher than they actually are -->

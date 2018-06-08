@@ -15,7 +15,8 @@
   ~ limitations under the License
   -->
 
-<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+<ripple
+   xmlns:android="http://schemas.android.com/apk/res/android"
         android:color="@color/notification_ripple_untinted_color">
     <item>
         <shape>
