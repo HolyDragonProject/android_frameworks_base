@@ -62,4 +62,6 @@
 
     <!-- QS corner content padding -->
     <dimen name="qs_corner_content_padding">8dp</dimen>
+
+    <dimen name="current_weather_image_size">42dp</dimen>
 </resources>
