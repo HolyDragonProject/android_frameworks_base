@@ -293,10 +293,6 @@ public class KeyguardStatusView extends GridLayout {
         boolean showWeather = Settings.System.getIntForUser(resolver,
                 Settings.System.LOCKSCREEN_WEATHER, 0, UserHandle.USER_CURRENT) == 1;
 
-        mClockView.setVisibility((showClock || mDarkAmount == 1) ? View.VISIBLE : View.GONE);
-        mDateView.setVisibility((showDate || mDarkAmount == 1) ? View.VISIBLE : View.GONE);
-        mAlarmStatusView.setVisibility((showAlarm || mDarkAmount == 1) && nextAlarm != null ? View.VISIBLE : View.GONE);
-
         if (mWeatherView != null) {
             if (showWeather) {
                 mWeatherView.setVisibility(View.VISIBLE);
