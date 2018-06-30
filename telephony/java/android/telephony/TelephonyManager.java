@@ -1836,7 +1836,7 @@ public class TelephonyManager {
      */
     @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public int getDataNetworkType() {
-        return getDataNetworkType(getDefaultDataSubscriptionId());
+        return getDataNetworkType(getSubId(SubscriptionManager.getDefaultDataSubscriptionId()));
     }
 
     /**
@@ -5643,7 +5643,7 @@ public class TelephonyManager {
      */
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
     public void setDataEnabled(boolean enable) {
-        setDataEnabled(getDefaultDataSubscriptionId(), enable);
+        setDataEnabled(getSubId(SubscriptionManager.getDefaultDataSubscriptionId()), enable);
     }
 
     /** @hide */
@@ -5692,7 +5692,7 @@ public class TelephonyManager {
      */
     @SuppressWarnings("deprecation")
     public boolean isDataEnabled() {
-        return getDataEnabled(getDefaultDataSubscriptionId());
+        return getDataEnabled(getSubId(SubscriptionManager.getDefaultDataSubscriptionId()));
     }
 
     /**
